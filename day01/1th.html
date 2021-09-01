@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>Echarts快速上手五步</title>
+	<!-- ctrl+N,新建    ctrl+S 保存-->
+
+	<!--步骤一：  引入echarts.js文件-->
+	<script src = "lib/echarts.min.js"></script>
+
+	<!--
+		步骤一： 引入echarts.js文件
+		步骤二： 准备一个呈现图表的盒子<div>标签
+		步骤三： 初始化echarts实例对象
+		步骤四： 准备配置项                 （大部分改变这一部分）
+		步骤五： 将配置项设置给echarts实例对象
+	-->
+
+</head>
+<body>
+	<!-- cd version     
+		npm install      
+		npm run serve-->
+	<!-- 步骤二： 准备一个呈现图表的盒子<div>标签 -->
+		<div style="width: 600px; height: 300px;"></div>
+		<script>
+			// 步骤三： 初始化echarts实例对象 
+			// 参数（dom），决定图表最终呈现的位置
+			var mCharts = echarts.init(document.querySelector('div'))
+
+			// 步骤四： 准备配置项 
+			var option = {
+				title: {
+					text: "销量",                               // 标题文字
+					link: "https://www.sina.com.cn/",           // 标题超链接
+					textStyle: {                                //  标题样式设置        
+						color: 'blue',        
+ 
+					},
+
+
+				},
+
+				xAxis: {
+					type: 'category',                       // 指明x轴为 类目轴
+					data: ['小米', '华为', '苹果']           // 为类目轴提供数据, 该数据是一个数组, 数组中的每个元素会呈现在x轴上
+				},
+
+				yAxis:{
+					type: 'value'                          // 指明y轴为 数值轴, 指明数值轴之后, 无需指定data
+				},
+
+				series: [
+					{
+						name: '销售数量',                   //  为图标起一个名称
+						type: 'bar',                        // line折线图   pie扇形图
+						data: [70, 67, 98]                //  为x轴的每一个元素, 指明呈现在y轴的数值
+
+					}
+				]
+			}
+
+		// 步骤五： 将配置项设置给echarts实例对象	
+		mCharts.setOption(option)
+
+		</script>
+
+</body>
+</html>  

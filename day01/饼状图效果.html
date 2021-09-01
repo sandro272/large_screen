@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<script src = "lib/echarts.min.js"></script>
+
+</head>
+<body>
+	<div style="width: 700px; height: 400px;"></div>
+	<script>
+		 //1. ECharts最基本的代码结构
+    	// 2. 准备数据[{name:???, value:??? },{}]
+    	//    淘宝: 11231  京东: 22673  唯品会: 6123  1号店: 8989   聚美优品: 6700
+    	// 3. 将type的值设置为pie
+    	// pieData就是需要设置给饼图的数据, 数组,数组中包含一个又一个的对象, 每一个对象中, 需要有name和value
+    	pieData = [{name: "淘宝", value: 1123}, {name: "京东", value: 22673}, {name: "唯品会", value: 6123}, {name: "1号店", value: 8989}, {name: "聚美优品", value: 6700}]
+
+    	var mCharts = echarts.init(document.querySelector("div"))
+
+    	var option = {
+    		series: [
+    			{
+    				type: "pie", 
+    				data: pieData,
+    				label: {                                         // 饼图文字的显示
+    					show: true,
+    					// formatter: "hah",                         // 决定文字显示的内容
+    					formatter: function(arg){
+    						console.log(arg)
+    						return arg.name + "平台" + arg.value + "元" + arg.percent + "%"
+    					}
+
+
+    				},
+    				// radius: 20,                     // 饼图的半径
+    				// radius: "30%",                     // 百分比参照的是宽度和高度中较小的那一部分的一半来进行百分比设置
+    				// radius: ["30%", "70"],             // 环园，第0个元素代表的是內圆的半径 第1个元素外圆的半径  
+    				roseType: "radius",                   // 南丁格尔图 饼图的每一个区域的半径是不同的
+    				// selectedMode: "single",               // 选中的效果,能够将选中的区域偏离圆点一小段距离
+    				selectedMode: "multiple",
+    				selectedOffset: 35,                  // 偏移量
+
+
+    			}
+    		],
+
+
+    	}
+
+    	mCharts.setOption(option)
+	</script>
+
+</body>
+</html>

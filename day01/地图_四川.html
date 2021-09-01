@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<script src = "lib/echarts.min.js"></script>
+	<script src = "lib/jquery.min.js"></script>
+</head>
+
+<body>
+	<div style="width:850px; height: 450px; border: 1.3px solid ;"></div>
+	<script>
+		// 1. 加载四川省地图的矢量数据
+    	// 2. 在Ajax的回调函数中注册地图矢量数据 echarts.registerMap('sichuan', 矢量地图数据)
+    	// 3. 配置geo的type为'map', map为'sichuan' 
+    	// 4. 通过zoom调整缩放比例
+    	// 5. 通过center调整中心点
+
+    	var mCharts = echarts.init(document.querySelector("div"))
+
+    	$.get("json/map/sichuan.json", function(arg){
+
+    		console.log(arg)
+    		echarts.registerMap("sichuan_Province", arg)
+
+    		var option = {
+    						geo: {
+    							type: "map",
+    							map: "sichuan_Province",
+    							roam: true,
+    							zoom: 1.2,
+    							label:{
+    								show: true,
+    							},
+    							center: [104.741722, 31.46402],                                // 这个坐标值, 我们是可以通过地图矢量数据获取到的
+
+    						}
+
+    	}
+
+    	mCharts.setOption(option)
+
+    	})
+
+    	
+	</script>
+
+</body>
+</html>

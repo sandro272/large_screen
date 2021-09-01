@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>折线图</title>
+	<script src = "lib/echarts.min.js"></script>
+</head>
+<body>
+	<div style="width: 600px; height: 300px;"></div>
+	<script>
+		 //  1. ECharts最基本的代码结构
+    	 //  2. x轴数据:['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
+         //  3. y轴数据:[3000, 2800, 900, 1000, 800, 700, 1400, 1300, 900, 1000, 800, 600]
+         //  4. 将type的值设置为line
+
+         var mCharts = echarts.init(document.querySelector("div"))
+         var xDataArr = ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
+    	 var yDataArr = [3000, 2800, 900, 1000, 800, 700, 1400, 1300, 900, 1000, 800, 600]
+
+         var opt = {
+         	xAxis:{
+         		type: "category",
+         		data: xDataArr,
+         	},
+         	yAxis:{
+         		type: "value",
+         	},
+         	series:[
+         			{
+		         		name: "康师傅",
+		         		type: "line",
+		         		data: yDataArr,                                   // 设置图表类型为 折线图
+		         		markPoint: {                                      // 标记点
+		         			data: [
+		         					{type: "max",},{type: "min",}
+		         				]
+		         		},
+		         		markLine: {                                       // 标记点
+		         			data: [{type: "average",}]
+		         		},
+		         		markArea: {                                       // 标记点
+		         			data: [[
+		         					{
+		         						xAxis: "1月",
+
+		         					},
+		         					{
+		         						xAxis: "2月",
+		         					}
+		         					], 
+		         				  [{
+		         				  		xAxis: "7月",
+		         				  },
+		         				  {
+		         				  		xAxis: "8月",
+		         				  }]]
+		         		},
+		         		smooth: true,                                             // 是否为平滑线
+		         		lineStyle:{
+		         			color: "gray",
+		         			type: "dotted",                                 // dashed dotted solid
+		         		},   
+		         		areaStyle: {                                        // 线和x轴形成的区域设置
+		         			color: "pink",  
+		         		}                                     
+
+		         	},
+		          ]
+
+
+         }
+
+         mCharts.setOption(opt)
+		
+	</script>
+
+</body>
+</html>

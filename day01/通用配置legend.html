@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>legend</title>
+	<script src = "lib/echarts.min.js"></script>
+</head>
+<body>
+	<div style="width: 600px; height: 300px"></div>
+	<script>
+		var mCharts = echarts.init(document.querySelector("div"))
+		var xDataArr = ['张三', '李四', '王五', '闰土', '小明', '茅台', '二妞', '大强']
+	    var yDataArr1 = [88, 92, 63, 77, 94, 80, 72, 86]
+	    var yDataArr2 = [93, 60, 61, 62, 85, 79, 92, 30]
+
+		var opt = {
+			title: {
+				text: "成绩展示",
+				textStyle:{
+					color: "blue"
+				},
+				borderColor: 'green',
+				borderWidth: 20,
+				borderRadius:5,
+				left: 260,
+				top: 12,
+			},
+			tooltip:{
+				trigger: "item",
+				triggerOn: "click",
+				formatter: "{b} 的成绩是 {c}"
+			},
+			toolbox:{
+				feature:{
+					saveAsImage: {},
+					dataView: {},
+					restore:{},
+					dataZoom:{},
+					magicType:{
+						type: ['bar', 'line']
+					}
+				}
+			},
+			legend: {                               // 图例, 图例中的data数据来源于series中每个对象的name, 图例可以帮助我们对图表进行筛选
+				data: ['语文', '数学']
+			},
+			
+			xAxis: {
+				type: "category",
+				data: xDataArr,
+			},
+			yAxis:{
+				type: "value"
+			},
+			series:[
+			{
+				name: "语文",
+				type: "bar",
+				data: yDataArr1,
+
+			},
+			{
+				name: "数学",
+				type: "bar",
+				data: yDataArr2
+
+			}
+			],
+
+
+		}
+
+
+		mCharts.setOption(opt)
+
+		
+	</script>
+
+</body>
+</html>

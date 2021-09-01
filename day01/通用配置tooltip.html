@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>通用配置</title>
+	<script src = "lib/echarts.min.js"></script>
+</head>
+
+<body>
+
+	<div style="width: 600px; height: 300px">nihao</div>
+	
+	<script>
+		var mCharts = echarts.init(document.querySelector('div'))
+
+		var xDataArr = ['张三', '李四', '王五', '闰土', '小明', '茅台', '二妞', '大强']
+		var yDataArr = [88, 92, 63, 77, 94, 80, 72, 86]
+
+		var opt = { 
+			title: {                                                  // 标题设置
+				text: "成绩展示",                                      // 标题文字
+				borderWidth: 10,                                      // 标题边框宽度
+				borderColor: 'gray',                                  // 标题边框颜色
+				borderRadius: 10,                                     // 标题边框圆角      
+				left: 260,                                            // 标题距离左边的距离
+				top: 15                                               // 标题距离顶部的距离           
+
+			},
+			tooltip: {                                        // 工具提示
+				// trigger: 'item'                                    工具提示的类型 item代表的是每个柱本身, axis代表的是坐标轴
+				trigger: 'axis',
+				triggerOn: 'click',                         // 触发时机, click代表点击, mouseOver代表鼠标移过
+				// formatter: 'hah'
+				// formatter: '{b}的成绩是{c}'
+				formatter: function (arg) {
+					// console.log(arg)                                // 查看
+					// return 'hh'
+					return arg[0].name + '的分数是' + arg[0].data
+				}
+
+			},
+
+			xAxis: {
+				type: "category",
+				data: xDataArr,
+
+			},
+
+			yAxis: {
+				type: 'value'
+
+			},
+
+			series: [
+			{
+				name: "语文",
+				type: "bar",
+				data: yDataArr
+
+			}
+			]
+
+		}
+
+		mCharts.setOption(opt)
+	</script>
+
+</body>
+</html>
