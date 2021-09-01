@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<script src = "lib/echarts.min.js"></script>
+	<script src = "theme/customized.js"></script>
+</head>
+
+<body>
+	<div style="width: 1000px; height: 600px; border: 2px solid;"></div>
+	<script>
+		var mCharts = echarts.init(document.querySelector("div"), "customized")              // 遵循就近原则
+
+		var pieData = [
+					      {
+					        value: 11231,
+					        name: "淘宝",
+					      },
+					      {
+					        value: 22673,
+					        name: "京东"
+					      },
+					      {
+					        value: 6123,
+					        name: "唯品会"
+					      },
+					      {
+					        value: 8989,
+					        name: "1号店"
+					      },
+					      {
+					        value: 6700,
+					        name: "聚美优品"
+					      }
+    	]
+
+    	var opt = {
+    		color: ['red', 'green', 'blue', 'skyblue', 'purple'],                             // 遵循就近原则
+    		series: [
+    			{
+    				type: "pie",
+    				data: pieData,
+    				color: ['pink', 'yellow', 'black', 'orange', 'red']                        // 遵循就近原则
+    			}
+    		]
+
+    	}
+
+    	mCharts.setOption(opt)
+	</script>
+
+</body>
+</html>

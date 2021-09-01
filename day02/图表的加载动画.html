@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<script src = "lib/echarts.min.js"></script>
+	<script src = "lib/jquery.min.js"></script>
+</head>
+
+<body>
+	<div style="width: 1000px; height: 600px; border: 2px solid;"></div>
+
+	<script>
+
+		var mCharts = echarts.init(document.querySelector("div"), "light")
+
+		mCharts.showLoading()                                                   // 在获取数据之前, 显示加载动画
+
+		$.get("data/test_data.json", function(ret){
+
+			mCharts.hideLoading()                                             // 当服务器数据获取成功之后, 隐藏加载动画
+
+			var newArr = []
+			for(var i = 0; i < ret.length; i++){
+				// console.log(ret[i])
+				height = ret[i].height
+				weight = ret[i].weight
+
+				newArr.push([height, weight])
+				// console.log(newArr)
+
+			}
+
+			var option = {
+				xAxis: {
+					type: "value",
+					scale: true,
+				},
+				yAxis: {
+					type: "value",
+					scale: true,
+				},
+				series: [
+					{
+						type: "effectScatter",
+						data: newArr,
+						showEffectOn: "emphasis",
+						rippleEffect:{
+							scale: 10
+						},
+
+						symbolSize: function(arg){
+							var height = arg[0] / 100
+							var weight = arg[1]
+							var bmi = weight / (height * height)
+							if(bmi > 28){
+								return 25
+
+							}else{
+								return 5
+							}
+
+
+
+						},
+						itemStyle: {
+							color: function (argument) {
+								console.log(argument)
+								var height = argument.data[0] / 100
+								var weight = argument.data[1]
+								var bmi = weight / (height * height)
+								if(bmi > 28){
+									return "purple"
+								}
+								return "black"
+							}
+
+						}
+
+					},
+
+				],
+
+		}
+		mCharts.setOption(option)
+
+
+		})
+
+		
+
+		
+
+		
+
+
+	</script>
+
+</body>
+</html>

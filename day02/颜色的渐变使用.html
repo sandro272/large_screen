@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<script src="lib/echarts.min.js"></script>
+</head>
+<body>
+	 <div style = "width: 600px;height:400px"></div>
+	 <script>
+	 	var mCharts = echarts.init(document.querySelector("div"))
+	    var xDataArr = ['张三', '李四', '王五', '闰土', '小明', '茅台', '二妞', '大强']
+	    var yDataArr = [88, 92, 63, 77, 94, 80, 72, 86]
+
+	    var option = {
+	    	xAxis: {
+	    		type: "category",
+	    		data: xDataArr,
+
+	    	},
+	    	yAxis: {
+	    		type: "value",
+	    	},
+	    	series: [
+	    		{
+	    			type: "bar",
+	    			data: yDataArr,
+	    			itemStyle: {
+	    				color: {
+	    					type: "radial",
+	    					x: 0.5,
+	    					y: 0.8,
+	    					r: 0.6,
+	    					colorStops: [
+					    					{
+					    						offset: 0, color: "pink",
+					    					},
+					    					{
+					    						offset: 1, color: "purple",
+					    					}
+	    					]
+	    				}
+	    			}
+	    		},
+	    	],
+
+
+	    }
+
+	    mCharts.setOption(option)
+	 </script>
+
+</body>
+</html>
