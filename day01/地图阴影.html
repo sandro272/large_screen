@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Document</title>
+  
+  <!--引入这个库文件-->
+  <script src = "lib/echarts.min.js"></script>
+  <script src = "lib/jquery.min.js"></script>
+
+
+
+</head>
+
+<body>
+  <div style="width: 800px; height: 400px; border: 1.5px solid #f00"></div>
+
+  <script>
+
+    //  1. ECharts最基本的代码结构
+    //  2. 准备中国地图的矢量数据
+    //  3. 使用Ajax获取矢量地图数据
+    //  4. 在Ajax的回调函数中注册地图矢量数据 echarts.registerMap('chinaMap', 矢量地图数据)
+    //  5. 配置geo的type为'map', map为'chinaMap' 
+
+    var mCharts = echarts.init(document.querySelector("div"))
+
+    // 使用ajax获取数据
+    $.get('json/map/china.json', function(argu){
+
+        // argu 就是中国的各个省份的矢量地图数据
+        console.log(argu)
+
+        echarts.registerMap("chinaMap", argu)
+        var option = {
+            backgroundColor: '#000',//画布背景颜色
+            geo: {
+                show: true,
+                map: 'chinaMap',
+                label: {
+                    normal: {
+                        show: false
+                    },
+                    emphasis: {
+                        show: false,
+                    }
+                },
+                roam: true,
+                itemStyle: {
+                    normal: {
+                        areaColor: '#01215c',
+                        borderWidth: 5,//设置外层边框
+                        borderColor:'#9ffcff',
+                        shadowColor: 'rgba(0,54,255, 1)',
+                        shadowBlur: 150
+                    }
+                }
+            },
+            series: [
+            {
+                type: 'map',
+                map: 'chinaMap',
+                geoIndex: 1,
+                aspectScale: 0.75, //长宽比
+                showLegendSymbol: false, // 存在legend时显示
+                label: {
+                    normal: {
+                        show: false,
+                    },
+                    emphasis: {
+                        show: false,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }
+                },
+                roam: false,
+                itemStyle: {
+                    normal: {
+                        areaColor: '#01215c',
+                        borderColor: '#3074d0',
+                        borderWidth: 1
+                    },
+                    emphasis: {
+                        areaColor: '#01215c'
+                    }
+                },
+            }]
+      }
+    mCharts.setOption(option)
+
+
+    })
+
+  </script>
+
+</body>
+</html>

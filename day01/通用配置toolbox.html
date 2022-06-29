@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>toolbox</title>
+	<script src = "lib/echarts.min.js"></script>
+</head>
+
+<body>
+	<div style="width: 600px; height: 300px"></div>
+	<script>
+		var mCharts = echarts.init(document.querySelector("div"))
+
+		var xDataArr = ['张三', '李四', '王五', '闰土', '小明', '茅台', '二妞', '大强']
+		var yDataArr = [88, 92, 63, 77, 94, 80, 72, 86]
+
+		var opt = {
+			title: {
+				text: "成绩展示",
+				textStyle:{
+					color: "green",
+
+				},
+				borderWidth: 15,
+				borderColor: 'purple',
+				borderRadius: 6,
+				left: 260,
+				top: 17
+
+			},
+			tooltip:{
+				trigger: "axis",
+				triggerOn: 'click',
+				formatter: function(arg){
+					return arg[0].name + "的成绩是" + arg[0].data
+				}
+
+			},
+
+			toolbox: {                                             // 工具箱按钮
+				feature: {
+					saveAsImage: {},                                // 导出图片
+					dataView: {},
+					restore: {},                                   // 重置
+					dataZoom: {},                                 // 区域缩放
+					magicType:{
+						type: ['bar', 'line']                      // 动态图表类型的切换
+					}
+
+				}
+
+			},
+			
+			xAxis: {
+				type: "category",
+				data: xDataArr,
+			},
+
+			yAxis: {
+				type: "value",
+
+			},
+
+			series: [
+			{
+				name: "语文",
+				type: 'bar',
+				data: yDataArr,
+				markPoint: {
+					data:[
+						{type: "max", name: "最大值"}, 
+						{type: "min", name: "最小值"}
+					]
+				},
+				markLine:{
+					data: [
+						{type: "average", name: "平均值"}
+						]
+				},
+
+				
+				barWidth: '70%',
+				
+			},
+			]
+
+
+		}
+
+		mCharts.setOption(opt)
+
+
+	</script>
+
+</body>
+</html>

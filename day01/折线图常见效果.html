@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>折线</title>
+	<script src = "lib/echarts.min.js"></script>
+</head>
+<body>
+	<div style="width: 600px; height: 300px"></div>
+	<script>
+		var mCharts = echarts.init(document.querySelector("div"))
+		var xDataArr = ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
+	    // var yDataArr = [3000, 2800, 900, 1000, 800, 700, 1400, 1300, 900, 1000, 800, 600]
+	    var yDataArr = [3005, 3003, 3001, 3002, 3009, 3007, 3003, 3001, 3005, 3004, 3001, 3009]
+
+		var opt = {
+			xAxis: {
+				type: "category",
+				data: xDataArr,
+				boundaryGap: false                                   // x轴的第1个元素是否与y轴有距离
+
+
+			},
+			yAxis: {
+				type: "value",
+				scale: true
+
+			},
+			series: [
+			{
+				name: "康师傅",
+				type: "line",
+				data: yDataArr
+			},
+			],
+
+
+
+		}
+
+		mCharts.setOption(opt)
+	</script>
+
+</body>
+</html>

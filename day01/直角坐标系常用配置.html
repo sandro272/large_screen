@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>直角坐标系</title>
+	<script src = "lib/echarts.min.js"></script>
+</head>
+<body>
+	<div style="width: 600px; height: 400px"></div>
+	<script>
+		var mCharts = echarts.init(document.querySelector("div"))
+
+		var xDataArr = ['张三', '李四', '王五', '闰土', '小明', '茅台', '二妞', '大强']
+    	var yDataArr = [88, 92, 63, 77, 94, 80, 72, 86]
+
+		var opt = {
+			grid: {                                                                       // 坐标轴容器
+				show: true,
+				borderWidth: 25,                                                          // 边框的宽度
+				borderColor: "blue",                                                      // 边框的颜色
+				top: 110,                                                                 // 边框的位置
+				right: 80,
+				width: 190,                                                    // 边框的大小
+				height: 200,
+
+			},
+
+			xAxis:{
+				type: "category",
+				data: xDataArr,
+			},
+			yAxis:{
+				type: "value"
+			},
+			series:
+			[
+				{
+					name: "语文",
+					type: "bar",
+					data: yDataArr,
+					markPoint: {
+						data:[
+								{
+									name: "最大值",
+									type: "max",
+
+								},{
+									name: "最小值",
+									type: "min",
+								}
+							
+						]
+					},
+					markLine: {
+						data:[
+								{
+									name: "平均值",
+									type: "average",
+								}
+						]
+					},
+					label: {
+						show: true,
+						rotate: 25,
+						position: "top",
+					},
+					barWidth: '78%',
+
+				}
+			]
+
+		}
+
+		mCharts.setOption(opt)
+		
+	</script>
+
+</body>
+</html>

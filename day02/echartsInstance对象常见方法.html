@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<script src = "lib/echarts.min.js"></script>
+	<script src = "lib/jquery.min.js"></script>
+</head>
+<body>
+	<div style = "width:800px; height: 400px; border: 1.3px solid gray;"></div>
+
+	<button id = "but01">触发事件</button>
+	<button id = "but02">clear</button>
+	<button id = "but03">SetOption</button>
+	<button id = "but04">dispose</button>
+
+	<script>
+		var mCharts = echarts.init(document.querySelector("div"), "light")
+
+		var pieData = [
+					      { value: 11231, name: "淘宝", },
+					      { value: 22673, name: "京东", },
+					      { value: 6123, name: "唯品会", },
+					      { value: 8989, name: "1号店", },
+					      { value: 6700, name: "聚美优品",}
+    	]
+
+		var option = {
+
+			legend: {
+				data: ["淘宝", "京东", "唯品会", "1号店", "聚美优品"]
+			},
+
+			tooltip: {
+				show: true,
+			},
+
+			series: [{
+				type: "pie",
+				data: pieData,
+			}]
+
+		}
+
+		mCharts.setOption(option)
+
+		mCharts.on("click", function (arg) {                            // 对事件进行监听
+			console.log(arg)
+			console.log("click...")
+		})
+
+		mCharts.off("click")                                         // 解绑click的事件
+
+		mCharts.on("legendselectchanged", function (arg) {
+			console.log(arg)
+			console.log("legendselectchanged")
+		})
+
+		$("#but01").click(function(){                                 // 模拟用户的行为
+			mCharts.dispatchAction({
+				type: "highlight",
+				seriesIndex: 0,                                      // 系列的索引
+				dataIndex: 1,                                        // 数据的索引
+
+			})
+
+			mCharts.dispatchAction({
+				type: "showTip",
+				seriesIndex: 0,
+				dataIndex: 2
+			})
+		})
+
+		$("#but02").click(function(){
+			mCharts.clear()                                            // 清空图表的实例
+		})
+
+		$("#but03").click(function() {                                    // 重新设置option
+			mCharts.setOption(option)
+		})
+
+		$("#but04").click(function(){                                  // 销毁mCharts                              
+			mCharts.dispose()
+		})
+
+	</script>
+
+</body>
+</html>

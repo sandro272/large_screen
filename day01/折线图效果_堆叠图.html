@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>折现图_堆叠图</title>
+	<script src = "lib/echarts.min.js"></script>
+</head>
+<body>
+
+	<div style="width: 600px; height: 300px"></div>
+	<script>
+		var mCharts = echarts.init(document.querySelector('div'))
+
+		var xDataArr = ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
+	    var yDataArr = [3000, 2800, 900, 1000, 800, 700, 1400, 1300, 900, 1000, 800, 600]
+	    var yDataArr2 = [2000, 3800, 1900, 500, 900, 1700, 2400, 300, 1900, 1500, 1800, 200]
+
+		var opt = {
+
+			xAxis: {
+				type: "category",
+				data: xDataArr,
+				boundaryGap: false,
+			},
+			yAxis: {
+				type: "value",
+				scale: true
+			},
+			series:[{
+				type: "line",
+				data: yDataArr,
+				stack: "all",                              // 堆叠图的设置
+				areaStyle: {}
+			},
+			{
+				type: "line",
+				data: yDataArr2,
+				stack: "all",                              // 堆叠图的设置
+				areaStyle: {}
+			}
+			],
+
+
+		}
+
+		mCharts.setOption(opt)
+	</script>
+
+</body>
+</html>

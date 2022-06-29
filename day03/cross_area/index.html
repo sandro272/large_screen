@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<script src = "lib/jquery.min.js"></script>
+</head>
+<body>
+	<button>点一点</button>
+	<script>
+		$("button").click(function(){
+
+			//                http://127.0.0.1:5500/index.html
+    		// 发起ajax的请求  http://127.0.0.1:8888/api/map
+			$.ajax({
+				type: "get",
+				url: "http://127.0.0.1:8888/api/map",
+				success: function (arg) {
+					console.log(arg)
+				}
+			})
+		})
+	</script>
+
+</body>
+</html>

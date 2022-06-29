@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<script src = "lib/echarts.min.js"></script>
+</head>
+
+<body>
+	<div style="width: 1000px; height: 600px; border: 1px solid;"></div>
+
+	<script>
+		//	1. ECharts最基本的代码结构
+    	//	2. 准备数据, 设置给series下的data
+    	//	3. 将type的值设置为gauge
+
+		var mCharts = echarts.init(document.querySelector("div"))
+
+		var opt = {
+			series:[
+				{
+					type: "gauge",
+					data: [
+							{
+								value: 95,
+								itemStyle: {
+									color: "blue",
+								},
+
+							},
+							{
+								value: 65,
+								itemStyle: {
+									color: "gray",
+								},
+
+							},
+					],
+					min: 20,				
+				},
+			]
+
+
+		}
+
+		mCharts.setOption(opt)
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<script src = "lib/echarts.min.js"></script>
+</head>
+
+<body>
+	<div style="width: 1000px; height: 600px; border: 1px solid;"></div>
+
+	<script>
+		//	1. ECharts最基本的代码结构
+	    //	2. 定义各个维度的最大值, 通过radar属性配置
+	    //   易用性,功能,拍照,跑分,续航, 每个维度的最大值都是100
+	    //	3. 准备产品数据, 设置给series下的data
+	    //   华为手机1: 80, 90, 80, 82, 90
+	    //   中兴手机1: 70, 82, 75, 70, 78
+	    //	4. 将type的值设置为radar
+			
+		var mCharts = echarts.init(document.querySelector("div"))
+
+		// 各个维度的最大值
+		var maxData = [
+			{
+				name: "易用性",
+				value: 100,
+			},
+			{
+				name: "功能性",
+				value: 100,
+			},
+			{
+				name: "拍照",
+				value: 100,
+			},
+			{
+				name: "跑分",
+				vaule: 100,
+			},
+			{
+				name: "续航",
+				vaule: 100,
+			},
+		]
+
+		var option = {
+			radar: {
+				indicator: maxData,                                               // 配置各个维度的最大值
+				shape: "polygon",                                                 // 配置雷达图最外层的图形 circle polygon
+			},
+			series: [
+				{
+					type: "radar",                                               // radar 此图表时一个雷达图
+					label: {                                                     // 设置标签的样式
+						show: true,                                              // 显示数值
+					},
+					areaStyle: {},                                               // 将每一个产品的雷达图形成阴影的面积
+					data: [
+						{
+							name: "华为",
+							value: [80, 90, 80, 82, 90],
+
+						},
+						{
+							name: "中兴",
+							value: [70, 82, 75, 70, 78],
+
+						},
+					],
+				},
+			]
+
+
+			
+
+
+		}
+
+		mCharts.setOption(option)
+	</script>
+
+
+
+</body>
+</html>

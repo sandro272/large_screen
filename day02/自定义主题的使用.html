@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<script src = "lib/echarts.min.js"></script>
+	<script src = "theme/customized.js"></script>
+</head>
+
+<body>
+	<div style = "width: 1000px; height: 600px; border: 1px solid;"></div>
+	<script>
+		// 1.在线编辑主题 https://echarts.apache.org/zh/theme-builder.html
+	    // 2.下载主题的js文件
+	    // 3.在html中导入js文件
+	    // 4.在init方法中指明主题的名称
+
+		var mCharts = echarts.init(document.querySelector("div"), "customized")
+
+		var xDataArr = ['张三', '李四', '王五', '闰土', '小明', '茅台', '二妞', '大强']
+    	var yDataArr = [88, 92, 63, 77, 94, 80, 72, 86]
+
+    	var op = {
+    		xAxis: {
+    			type: "category",
+    			data: xDataArr,
+    		},
+    		yAxis: {
+    			type: "value",
+    		},
+    		series: [
+    			{
+    				type: "bar",
+    				data: yDataArr,
+    				markPoint: {
+    					data: [{
+    						type: "max", name: "最大值",
+
+    					},
+    					{
+    						type: "min", name: "最小值",
+
+    					},]
+    				},
+    				markLine: {
+    					data: [{
+    						type: "average", name: "平均值",
+    					},]
+    				},
+    				label: {
+    					show: true,
+    					rotate: 20,
+    				},
+    				barWidth: "28%",
+    			},
+    		],
+
+    	};
+
+    	mCharts.setOption(op)
+
+
+	</script>
+
+</body>
+</html>

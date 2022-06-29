@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<script src = "lib/echarts.min.js"></script>
+</head>
+
+<body>
+	<div style="width: 1000px; height: 600px; border: 2px solid;"></div>
+	<button id = "modify">修改数据</button>
+	<button id = "add">添加数据</button>
+
+	<script>
+		
+		var mCharts = echarts.init(document.querySelector("div"), "light")
+
+		var xDataArr = ['张三', '李四', '王五', '闰土', '小明', '茅台', '二妞', '大强']
+    	var yDataArr = [88, 92, 63, 77, 94, 80, 72, 86]
+
+    	var op = {
+    		xAxis: {
+    			type: "category",
+    			data: xDataArr,
+    		},
+    		yAxis: {
+    			type: "value",
+    		},
+    		series: [
+    			{
+    				type: "bar",
+    				data: yDataArr,
+    				markPoint: {
+    					data: [{
+    						type: "max", name: "最大值",
+
+    					},
+    					{
+    						type: "min", name: "最小值",
+
+    					},]
+    				},
+    				markLine: {
+    					data: [{
+    						type: "average", name: "平均值",
+    					},]
+    				},
+    				label: {
+    					show: true,
+    					rotate: 20,
+    				},
+    				barWidth: "28%",
+    			},
+    		],
+
+    	};
+
+    	mCharts.setOption(op)
+
+    	var btnModify = document.querySelector("#modify")
+    	btnModify.onclick = function () {
+    	var newYDataArr = [28, 72, 63, 7, 94, 50, 72, 86]
+
+    		// setOption 可以设置多次
+	      	// 新的option 和 旧的option
+	      	// 新旧option的关系并不是相互覆盖的关系, 是相互整合的关系
+	      	// 我们在设置新的option的时候, 只需要考虑到变化的部分就可以
+
+    		var option = {
+    			series: [
+    						{
+    							data: newYDataArr
+    						},
+    			]
+    		}
+    		mCharts.setOption(option)
+    	}
+
+    	var btnAdd = document.querySelector("#add")
+    	btnAdd.onclick = function () {
+    			xDataArr.push("小张")
+    			yDataArr.push(90)
+
+
+    			var option = {
+    				xAxis: {
+    					data: xDataArr
+    				},
+    				series: [{
+    					data: yDataArr
+    				}],
+    			}
+    			mCharts.setOption(option)
+    		}
+
+
+
+
+
+	</script>
+
+</body>
+</html>

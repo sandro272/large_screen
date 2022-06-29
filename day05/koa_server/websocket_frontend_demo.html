@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+	<button id = "connect"> 连接 </button>
+	<!--一开始将其设置为禁用状态-->
+	<button id = "send" disabled="true"> 发送数据 </button> <br/>
+	从服务端接收的数据如下： <br/>
+	<span id = "receive"></span>
+
+	<script>
+		var connect = document.querySelector('#connect')
+		var send = document.querySelector('#send')
+		var receive = document.querySelector('#receive')
+		let ws = null
+		connect.onclick = function () { 
+			ws = new WebSocket('ws://localhost:3344')
+			ws.onopen = () => {
+				console.log('连接服务器成功...')
+				send.disabled = false
+			}
+			ws.onmessage = msg => {
+				console.log('接收到从服务器端发来的数据...')
+				console.log(msg)
+				receive.innerHTML = msg.data
+			}
+			ws.onclose = () => {
+				console.log('连接服务器失败或关闭...')
+				send.disabled = true
+			}
+
+         // 使用open in browesr打开此html，使用node app.js 然后点击连接可以看到
+		}
+		// 点击它，发送数据给服务端
+		send.onclick = function(){
+			// ws.send('hello, socket from frontend')
+			// ws.send(JSON.stringify({
+			// 	action: 'getData',
+			// 	socketType: 'trendData',
+			// 	chartName: 'trend',
+			// 	value: ''
+			// }))
+
+			ws.send(JSON.stringify({
+				action: 'fullScreen',
+				socketType: 'fullScreen',
+				chartName: 'trend',
+				value: true
+			}))
+			
+			// ws.send(JSON.stringify({
+			// 	action: 'themeChange',
+			// 	socketType: 'themeChange',
+			// 	chartName: '',
+			// 	value: 'chalk'
+			// }))
+
+
+		}
+		
+	</script>
+</body>
+</html>

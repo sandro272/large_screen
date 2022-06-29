@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>
+		Document
+	</title>
+
+	<!--步骤一：  引入echarts.js文件-->
+	<script src = "lib/echarts.min.js"></script>
+</head>
+<body>
+
+	<!-- 步骤二： 准备一个呈现图表的盒子<div>标签 -->
+	<div style="width: 600px; height: 300px;"></div>
+
+
+	<script>
+		// 1. ECharts最基本的代码结构
+    	// 2. x轴数据:['张三', '李四', '王五', '闰土', '小明', '茅台', '二妞', '大强']
+	    // 3. y轴数据:[88, 92, 63, 77, 94, 80, 72, 86]
+	    // 4. 将type的值设置为bar
+
+
+		// 步骤三： 初始化echarts实例对象 
+		// 参数（dom），决定图表最终呈现的位置
+		var mCharts = echarts.init(document.querySelector("div"))
+
+		// 步骤四： 准备配置项 
+		var xDataArr = ['张三', '李四', '王五', '闰土', '小明', '茅台', '二妞', '大强']
+		var yDaTaArr = [88, 92, 63, 77, 94, 80, 72, 86]
+
+		var option = {
+
+			title: {
+				text: "期末成绩",
+				textStyle:{
+					color: "blue"
+				},
+			},
+
+
+			// xAxis: {
+			// 	type: "category",
+			// 	data: xDataArr
+
+			// },
+
+			// yAxis: {
+			// 	type: 'value'
+
+			// },
+			xAxis: {
+				type: 'value'
+			},
+
+			yAxis: {
+				
+				type: "category",
+				data: xDataArr
+			},
+
+			series: [
+				{
+					name: '语文',
+					type: 'bar',
+					data: yDaTaArr,
+					markPoint: {                                    // 标记点
+						data: [
+						{
+							type: "max",
+							name: "最大值"
+
+						},
+						{
+							type: "min",
+							name: "最小值"
+
+						}
+						]
+
+					},
+					markLine: {                                     // 标记线
+						data: [
+							{
+								type: "average",
+								name: "平均值"
+
+							}
+						]
+					},
+					label: {                                       // 柱状图上的文字设置
+						show: true,                               // 是否显示
+						rotate: 30,                                // 旋转角度                           
+						position: "top"                            // 显示位置
+
+					},
+					barWidth: "50%"                               // 柱的宽度
+
+				}
+
+			]
+		
+		}
+
+
+		// 步骤五： 将配置项设置给echarts实例对象	
+		mCharts.setOption(option)
+
+	</script>
+
+</body>
+</html>
